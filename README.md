@@ -1,6 +1,6 @@
 # Lovely Theme for Felix Felicis
 
-This is the mod for liquidluck classic theme Lovely (original for liquidluck 0.2/0.3).
+This is the mod of liquidluck classic theme **Lovely** (original for liquidluck 0.2/0.3).
 
 
 
@@ -46,48 +46,51 @@ Edit your settings, change your theme to ``lovelymod``.
 
 You can customize your theme with ``theme.vars``.
 
-+ Change Navigation (example)
++ Change Navigation (default)
 
-```python
-theme = {
-    'vars': [
-        'navigation': [
-            {'name': 'Home', 'link': '/'},
-            {'name': 'Life', 'link': '/life/'},
-        ]
-    ]
-}
-```
+	```python
+	theme = {
+	    'vars': [
+	        'navigation': [
+				{'id': 'nav-home', 'icon': 'icon-home', 'name': 'Home', 'link': '/'},
+				{'id': 'nav-about', 'icon': 'icon-info-sign', 'name': 'About', 'link': '/about.html'},
+				{'id': 'nav-tags', 'icon': 'icon-tag', 'name': 'Tags', 'link': '/tag/'}
+	        ]
+	    ]
+	}
+	```
+	1. id: navigation item id, unique, for css id atrribute.
+	2. icon: leave it blank or you can use any icon in [Font Awesome](http://fortawesome.github.com/Font-Awesome/).
 
 + Google Analytics
 
-```python
-theme = {
-    'vars': {
-        'analytics': 'UA-xxxx',
-    }
-}
-```
+	```python
+	theme = {
+	    'vars': {
+	        'analytics': 'UA-xxxx',
+	    }
+	}
+	```
 
 + Disqus Comment Support
 
-```python
-theme = {
-    'vars': {
-        'disqus': 'your-disqus-shortname',
-    }
-}
-```
+	```python
+	theme = {
+	    'vars': {
+	        'disqus': 'your-disqus-shortname',
+	    }
+	}
+	```
 
 + Gravatar
 
-```python
-theme = {
-    'vars': {
-        'gravatar': 'your-gravatar-email',
-    }
-}
-```
+	```python
+	theme = {
+	    'vars': {
+	        'gravatar': 'your-gravatar-email',
+	    }
+	}
+	```
 
 
 ## Allow comment
