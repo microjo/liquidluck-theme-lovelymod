@@ -39,8 +39,25 @@ $ git submodule add git://github.com/microjo/liquidluck-theme-lovelymod.git _the
 
 ## Configuration
 
-Edit your settings, change your theme to ``lovelymod``.
+Edit your settings:
 
+1. change your theme to ``lovelymod``
+
+	```python
+	theme = {
+		'name': 'lovelymod',
+	}
+	```
+
+2. set category template to ``category.html``
+
+	```python
+	writer = {
+	    'vars': {
+	        'category_template': 'category.html',
+	    }
+	}
+	```
 
 ## Customize
 
@@ -101,7 +118,7 @@ If you want to allow people to comment on your secret post, set
 ```python
 theme = {
     'vars': {
-        'allow_comment_on_secret_post': True
+        'allow_comment_on_secret_post': True,
     }
 }
 ```
