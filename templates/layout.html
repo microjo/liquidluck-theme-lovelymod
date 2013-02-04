@@ -1,0 +1,80 @@
+<!DOCTYPE HTML>
+<!--[if lt IE 8]> <html class="iehack" lang="{{theme.lang}}"> <![endif]-->
+<!--[if (gte IE 8)|!(IE)]><!--> <html lang="{{theme.lang}}"> <!--<![endif]-->
+{%- if theme.strings[theme.lang] is defined %}
+    {%- set strings = theme.strings[theme.lang] %}
+{%- else %}
+    {%- set strings = theme.strings %}
+{%- endif %}
+{%- set lang = theme.lang %}
+    <head>
+        <meta charset="UTF-8">
+        <title>{% block title %}{{site.name}}{% endblock %}</title>
+        {%- if theme.gravatar %}
+        <link rel="shortcut icon" href="{{theme.gravatar|gravatar_url}}" />
+        {%- endif %}
+        <script>if (top !== self) top.location = self.location;</script>
+        <!--[if lt IE 9]>
+        <script type="text/javascript" src="{{static_url('html5shiv.js')}}"></script>
+        <![endif]-->
+        <meta name="HandheldFriendly" content="True" />
+        <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=0" />
+        {%- block beforestyle %}{% endblock %}
+        <link rel="alternate" type="application/rss+xml" href="{{content_url('feed.xml')}}" title="{{site.name}}" />
+        <link rel="stylesheet" href="{{static_url('style.css')}}" />
+        {%- block afterstyle %}{% endblock %}
+        {%- if theme.analytics %}
+        <script type="text/javascript">
+            var _gaq = _gaq || [];
+            _gaq.push(['_setAccount', '{{theme.analytics}}']);
+            _gaq.push(['_trackPageview']);
+            _gaq.push(['_trackPageLoadTime']);
+            (function() {
+              var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+              ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+              var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+             })();
+         </script>
+         {%- endif %}
+    </head>
+    <body>
+        <header id="header">
+            {%- block header %}
+            <nav class="fn-clear">
+                {%- block nav %}
+                <ul id="nav" class="fn-right fn-clear">
+                    {%- for item in theme.navigation %}
+                    <li id="{{item.id}}"><a href="{{item.link}}">{%- if item.icon %}<i class="{{item.icon}}"></i>{% endif %}
+                        {%- if item.name is mapping %}{{item.name[lang]}}{% else %}{{item.name}}{% endif -%}
+                    </a></li>
+                    {%- endfor %}
+                </ul>
+                {%- endblock nav %}
+            </nav>
+            {%- endblock header %}
+        </header>
+
+        {%- block entry %}
+        <article class="hentry">
+            <header class="entry-header fn-clear">
+                <h1 class="entry-title fn-left">{% block entrytitle %}{{site.name}}{% endblock %}</h1>
+            </header>
+            {%- block container %}{% endblock %}
+        </article>
+        {%- endblock entry %}
+
+        <footer id="footer">
+            {%- block footer %}
+            <p class="copyright">© <a href="{{site.url}}">{{site.name}}</a> | 
+                <span class="software">Powered by <a href="{{system.homepage}}">{{system.name}}</a> {{system.version}}</span>
+            </p>
+            <p class="theme">Theme <a href="{{theme.website}}" rel="nofollow">{{theme.name}}</a> {{theme.version}} original designed by <a href="http://lepture.com">Hsiaoming Yang</a> | Modified by <a href="{{theme.author.website}}">{{theme.author.name}}</a></p>
+            {%- endblock footer %}
+        </footer>
+
+        <script type="text/javascript">
+            var currentNav = window.currentNav || "nav-home";
+            document.getElementById(currentNav).className = "current";
+        </script>
+    </body>
+</html>

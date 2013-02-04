@@ -1,0 +1,11 @@
+{% extends "archive.html" %}
+
+{% block afterstyle %}
+        {%- for item in theme.navigation %}
+        {%- if item.link == '/'+pagination.root+'/' %}
+        <script type="text/javascript">
+            var currentNav = "{{item.id}}";
+        </script>
+        {%- endif %}
+        {%- endfor %}
+{%- endblock %}

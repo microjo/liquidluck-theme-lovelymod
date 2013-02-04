@@ -1,0 +1,49 @@
+{% extends "layout.html" %}
+
+{% block title %}
+{%- if pagination.title != 'Archive' -%}
+{{pagination.title}} | {{site.name}}
+{%- else -%}
+{{strings.archive_title}} | {{site.name}}
+{%- endif %}
+{%- endblock %}
+
+{% block entrytitle %}
+{%- if pagination.title != 'Archive' -%}
+{{pagination.title}}
+{%- else -%}
+{{strings.archive_title}}
+{%- endif %}
+{%- endblock %}
+
+{% block container %}
+            <ul id="entry-list" class="fn-clear">
+                {%- for post in pagination.items %}
+                <li>
+                    <h3><a href="{{post|permalink}}">{{post.title}}</a></h3>
+                    {%- if post.summary %}
+                    <p>{{post.summary}}</p>
+                    {%- endif %}
+                    <time class="updated" datetime="{{post.date|xmldatetime}}" title="{{post.date.strftime("%a, %b %d, %Y")}}" pubdate>
+                        <a href="{{post|year_url}}" class="year">{{post.date.year}}</a>
+                        <span class="day">{{post.date.strftime("%b. %d".encode("gb18030")).decode("gb18030")}}</span>
+                    </time>
+                </li>
+                {%- endfor %}
+            </ul>
+            {%- if pagination.has_prev or pagination.has_next %}
+            <div id="pagination">
+                {%- if pagination.has_prev %}
+                <a class="prev" href="{{content_url(pagination.root, 'page', pagination.prev_num)}}">{{strings.archive_prev}}</a>
+                {%- else %}
+                <span class="prev">{{strings.archive_prev}}</span>
+                {%- endif %}
+                <span class="fn-current">{{pagination.page}}</span>
+                {%- if pagination.has_next %}
+                <a class="next" href="{{content_url(pagination.root, 'page', pagination.next_num)}}">{{strings.archive_next}}</a>
+                {%- else %}
+                <span class="next">{{strings.archive_next}}</span>
+                {%- endif %}
+            </div>
+            {%- endif %}
+{%- endblock %}

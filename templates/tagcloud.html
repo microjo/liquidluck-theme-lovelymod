@@ -1,0 +1,20 @@
+{% extends "layout.html" %}
+
+{% block title %}{{strings.tagcloud_title}} | {{site.name}}{% endblock %}
+
+{% block afterstyle %}
+		<script type="text/javascript">
+		    var currentNav = "nav-tags";
+		</script>
+{%- endblock %}
+
+{% block entrytitle %}{{strings.tagcloud_title}}{% endblock %}
+
+{% block container %}
+			<ul class="tagcloud fn-clear">
+			    {%- for tag in tags %}
+			    {%- set items = tags[tag] %}
+			    <li><a href="{{content_url('tag', tag, 'index.html')}}" style="font-size: {{items|length|tagsize}}%" title="{{items|length}} {{strings.tag_posts}}">{{tag}}</a></li>
+			    {%- endfor %}
+			</ul>
+{%- endblock %}
